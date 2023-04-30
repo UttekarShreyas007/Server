@@ -35,7 +35,7 @@ app.all('*', function(req, res, next) {
 // Connect to MongoDB
 mongoose.connect(config.mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
+    console.log('Connected to MongoDB', process.env.RENDER_EXTERNAL_HOSTNAME);
   })
   .catch((error) => {
     console.log('Error connecting to MongoDB:', error);
