@@ -16,22 +16,12 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-var whitelist = ['http://localhost:3000/', 'https://uttekarsrealty.netlify.app/']
-
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1 || !origin) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  credentials: true,
-  preflightContinue: true
-}
-
 app.use(
-  cors(corsOptions)
+  cors({
+    origin: "https://uttekarsrealty.netlify.app/",
+    credentials: true,
+    preflightContinue: true
+  })
 );
 
 app.all('*', function(req, res, next) {
