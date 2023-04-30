@@ -7,12 +7,6 @@ const auth = require("../middleware/authMiddleware");
 const authMiddleware = require("../middleware/authMiddleware");
 const agentMiddleware = require("../middleware/agentMiddleware");
 
-router.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  next();
-});
-
 // Route for creating a new property
 router.post("/create", auth, async (req, res) => {
   console.log("dhsl", req.userId);
@@ -98,6 +92,8 @@ router.delete("/:id", auth, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const properties = await Property.find().populate("agent", "name email");
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.send({ properties });
   } catch (error) {
     console.log(error);
