@@ -16,12 +16,6 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-// app.all('*', function(req, res, next) {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-//   res.header('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// });
 var whitelist = ['http://localhost:3000/', 'https://uttekarsrealty.netlify.app/']
 
 var corsOptions = {
@@ -39,6 +33,13 @@ app.use(
   cors(corsOptions)
 );
 
+app.all('*', function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 // Connect to MongoDB
 mongoose.connect(config.mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
