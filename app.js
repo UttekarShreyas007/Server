@@ -56,8 +56,7 @@ mongoose.connect(config.mongodbURI, { useNewUrlParser: true, useUnifiedTopology:
       cookie: {
         maxAge: 36000000, //3600000ms = 1hr
         sameSite: 'none',
-        secure: true,
-        domain: process.env.RENDER_EXTERNAL_HOSTNAME
+        secure: true
       },
     })
   );
