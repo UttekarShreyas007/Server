@@ -16,19 +16,29 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// app.all('*', function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+//   res.header('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
+var whitelist = ['http://localhost:3000/', 'https://uttekarsrealty.netlify.app/']
+
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+  credentials: true
+}
 
 app.use(
-  cors({
-    origin: "http://localhost:3000/",
-    credentials: true,
-  })
+  cors(corsOptions)
 );
+
 // Connect to MongoDB
 mongoose.connect(config.mongodbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
