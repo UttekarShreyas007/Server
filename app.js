@@ -18,7 +18,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://uttekarsrealty.netlify.app/",
+    origin: "http://localhost:3000/",
     credentials: true,
   })
 );
