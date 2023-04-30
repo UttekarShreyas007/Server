@@ -92,8 +92,6 @@ router.delete("/:id", auth, async (req, res) => {
 router.get("/", async (req, res) => {
   try {
     const properties = await Property.find().populate("agent", "name email");
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
     res.send({ properties });
   } catch (error) {
     console.log(error);
