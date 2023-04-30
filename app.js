@@ -16,7 +16,7 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
-var whitelist = ["https://uttekarsrealty.netlify.app", "http://localhost:3000"]
+var whitelist = ["https://uttekarsrealty.netlify.app", "http://localhost"]
 app.use(
   cors({
     origin: function (origin, callback) {
