@@ -49,7 +49,7 @@ router.post('/login', async (req, res, next) => {
         role: user.role
       }
       req.session.token = token;
-      console.log(process.env.RENDER_EXTERNAL_HOSTNAME, "login hstname)
+      console.log(process.env.RENDER_EXTERNAL_HOSTNAME, "login hstname")
       res.cookie("token", token, {maxAge: 36000000, sameSite: 'none', secure: true, domain: process.env.RENDER_EXTERNAL_HOSTNAME});
       res.send({message: "Login success", userObj});
     });
