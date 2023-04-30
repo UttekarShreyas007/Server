@@ -16,6 +16,12 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 const app = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  next();
+});
+
 app.use(
   cors({
     origin: "http://localhost:3000/",
