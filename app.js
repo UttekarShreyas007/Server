@@ -19,14 +19,14 @@ const app = express();
 // var whitelist = ["https://uttekarsrealty.netlify.app", "http://localhost:3000"]
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://uttekarsrealty.netlify.app",
     credentials: true,
     preflightContinue: true,
   })
 );
 
 app.all('*', function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.header('Access-Control-Allow-Origin', 'https://uttekarsrealty.netlify.app');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Access-Control-Allow-Origin');
