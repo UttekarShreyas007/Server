@@ -49,7 +49,7 @@ router.post('/login', async (req, res, next) => {
         role: user.role
       }
       req.session.token = token;
-      res.cookie("token", token, {maxAge: 36000000, sameSite: 'none', secure: true, domain:"uttekarsrealty.netlify.app"});
+      res.cookie("token", token, {maxAge: 36000000, sameSite: 'none', secure: true, domain:".netlify.app"});
       res.send({message: "Login success", userObj});
     });
   } catch (error) {
