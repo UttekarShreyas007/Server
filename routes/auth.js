@@ -8,12 +8,12 @@ const router = express.Router();
 // User signup route
 router.post("/signup", async (req, res, next) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
-    const user = new User({ name, email, password });
+    const user = new User({ name, email, password, role });
     await user.save();
     const token = jwt.sign({ userId: user._id }, config.jwtSecret, {
       expiresIn: "1d",

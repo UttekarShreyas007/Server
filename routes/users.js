@@ -8,7 +8,7 @@ const Property = require("../models/Property");
 
 // Route for creating a new user
 router.post("/users", async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   try {
     // Check if user with the given email already exists
     let user = await User.findOne({ email });
@@ -20,6 +20,7 @@ router.post("/users", async (req, res) => {
       name,
       email,
       password,
+      role,
     });
     // Hash the password
     const salt = await bcrypt.genSalt(10);
